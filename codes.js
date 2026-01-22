@@ -1,11 +1,6 @@
-// ===============================
-// SUDDA ACTIVATION CODES
-// ===============================
-// FORMAT: "CODE": days
-
+// activationCodes[code] = valid days
 const activationCodes = {
-  "SUDDA7": 7,          // 7 days
-  "SUDDA30": 30,        // 30 days
-  "SUDDA90": 90,        // 90 days
-  "SUDDALIFE": 9999     // lifetime
+  "SUDDA123": 7,
+  "SUDDA456": 30,
+  "SUDDA789": 365
 };
