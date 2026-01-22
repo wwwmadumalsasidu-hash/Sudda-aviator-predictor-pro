@@ -1,6 +1,5 @@
-// activationCodes[code] = valid days
 const activationCodes = {
-  "SUDDA123": 7,
-  "SUDDA456": 30,
-  "SUDDA789": 365
+  "SUDDA7": 7,
+  "SUDDA30": 30,
+  "SUDDA365": 365
 };
