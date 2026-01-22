@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SUDDA AVIATOR LOGIN</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Montserrat',sans-serif;background:linear-gradient(135deg,#0b0014,#1a0033);color:#fff;}
+.container{min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;}
+.card{width:100%;max-width:420px;background:rgba(0,0,0,0.35);padding:25px;border-radius:14px;text-align:center;}
+h1{font-size:22px;margin-bottom:15px;}
+input{width:100%;padding:14px;border:none;border-radius:10px;margin-bottom:12px;font-size:15px;}
+button{width:100%;padding:14px;border:none;border-radius:10px;background:#ff6a00;color:#fff;font-size:16px;font-weight:600;}
+.error{color:#ff6a6a;font-size:14px;margin-top:8px;}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="card">
+    <h1>SUDDA AVIATOR LOGIN</h1>
+    <p>Enter your activation code</p>
+    <input type="text" id="codeInput" placeholder="Activation Code">
+    <button onclick="login()">ACTIVATE</button>
+    <div class="error" id="error"></div>
+  </div>
+</div>
+
+<script src="codes.js"></script>
+<script>
+function login(){
+  const code=document.getElementById("codeInput").value.trim().toUpperCase();
+  if(!activationCodes || !activationCodes[code]){
+    document.getElementById("error").innerText="Invalid activation code";
+    return;
+  }
+  const days=activationCodes[code];
+  const expiry=new Date();
+  expiry.setDate(expiry.getDate()+days);
+  localStorage.setItem("sudda_expiry",expiry.getTime());
+  // Redirect to main predictor page
+  window.location.href="index.html";
+}
+</script>
+</body>
+</html>
