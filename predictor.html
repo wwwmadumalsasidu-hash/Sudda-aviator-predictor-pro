@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SUDDA AVIATOR PREDICTOR PRO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:'Montserrat',sans-serif;
+  background:linear-gradient(135deg,#0b0014,#1a0033);
+  color:#fff;
+}
+.container{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+.card{
+  width:100%;
+  max-width:420px;
+  background:rgba(0,0,0,0.35);
+  padding:25px;
+  border-radius:14px;
+  text-align:center;
+}
+.header{
+  background:linear-gradient(135deg,#ff6a00,#ff9a3c);
+  padding:15px;
+  border-radius:12px;
+  text-align:center;
+  font-weight:700;
+}
+.status{
+  display:flex;
+  justify-content:space-between;
+  margin-top:12px;
+  font-size:14px;
+}
+.signal{
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  border:3px solid #00c3ff;
+  margin:20px auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.signal.active{border-color:#ff6a00;}
+#recommend{
+  margin-top:10px;
+}
+.btn{
+  display:block;
+  text-decoration:none;
+  padding:14px;
+  border-radius:10px;
+  margin-top:10px;
+  font-weight:600;
+  color:#fff;
+}
+.whatsapp{background:#25D366;}
+.telegram{background:#0088cc;}
+.footer{
+  margin-top:15px;
+  font-size:12px;
+  opacity:0.7;
+}
+.logout{
+  margin-top:10px;
+  background:#ff3b3b;
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<script src="codes.js"></script>
+<script>
+// redirect to login if not logged in
+const savedExpiry = localStorage.getItem("sudda_expiry");
+if(!savedExpiry || new Date().getTime() > savedExpiry){
+  localStorage.removeItem("sudda_expiry");
+  window.location.href="index.html";
+}
+</script>
+
+<div class="container">
+  <div class="card">
+
+    <div class="header">SUDDA AVIATOR PREDICTOR PRO</div>
+
+    <div class="status">
+      <div id="time">00:00:00</div>
+      <div id="expiry">Expires: </div>
+    </div>
+
+    <div class="signal" id="signal">
+      <div id="signalText">PREDICTING<br>NEXT SIGNAL</div>
+    </div>
+
+    <div id="recommend">Analyzing patterns...</div>
+
+    <a class="btn whatsapp" href="https://wa.me/message/G3RNRGURKXLWL1" target="_blank">
+      JOIN WHATSAPP
+    </a>
+
+    <a class="btn telegram" href="https://t.me/Sasindumadumal" target="_blank">
+      JOIN TELEGRAM
+    </a>
+
+    <button class="logout" onclick="logout()">LOGOUT</button>
+
+    <div class="footer">POWERED BY SUDDA</div>
+
+  </div>
+</div>
+
+<script>
+// ===== LOGOUT =====
+function logout(){
+  localStorage.removeItem("sudda_expiry");
+  location.href="index.html";
+}
+
+// ===== CLOCK =====
+setInterval(()=>{
+  const d=new Date();
+  document.getElementById("time").innerText=d.toLocaleTimeString();
+  document.getElementById("expiry").innerText = "Expires: " + new Date(Number(savedExpiry)).toLocaleDateString();
+},1000);
+
+// ===== SIGNAL LOGIC =====
+const signal=document.getElementById("signal");
+const signalText=document.getElementById("signalText");
+const recommend=document.getElementById("recommend");
+
+function generateSignal(){
+  signal.classList.remove("active");
+  signalText.innerHTML="PREDICTING<br>NEXT SIGNAL";
+  recommend.innerText="Analyzing patterns...";
+  setTimeout(()=>{
+    signal.classList.add("active");
+    const odds=Math.random()>0.6?"7x – 10x":"3x – 5x";
+    signalText.innerHTML="SIGNAL ACTIVE";
+    recommend.innerText="Recommended Exit: "+odds;
+  },3000);
+}
+setInterval(generateSignal,15000);
+</script>
+
+</body>
+</html>
